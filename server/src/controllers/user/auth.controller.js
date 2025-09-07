@@ -1,15 +1,17 @@
 const { registerDB, loginDB } = require("../../services/user/auth.services");
+const { generateToken } = require("../../utils");
 
 const register = async (req, res) => {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) {
+    const { name, email, password, phone } = req.body;
+    if (!name || !email || !password || !phone) {
         return res.json({
             success: false,
             message: "All field require",
+            require:"['name', 'email', 'password', 'phone']"
         });
     }
     try {
-        const user = await registerDB({ name, email, password });
+        const user = await registerDB({ name, email, password, phone });
         if (!user) {
             return res.json({
                 success: false,
@@ -23,6 +25,11 @@ const register = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
+        if(error===11000){
+            return res.json({
+                error:"User already exist"
+            });
+        }
         console.log("Error in register controller" || "Something went wrong");
         return res.json({
             success: false,
@@ -54,11 +61,20 @@ const login = async (req, res) => {
                 message:"User not found",
             });
         }
+
+        const {accesstoken, reftoken} = generateToken({
+            id:user._id,
+            name:user.name,
+            email:user.email,
+            password:user.password
+        });
+
         return res.json({
             success:true,
             message:"User loggedIn successfully",
-            data: user,
+            data: {user, accesstoken, reftoken},
         });
+        
     } catch (error) {
         console.log(error);
         console.log("Erron in login controller" || "Something went wrong");

@@ -1,21 +1,21 @@
-const user = require("../../models/user")
+const User = require("../../models/user")
 
-const registerDB = async ({email, name, password}) => {
-    const userdata = await user.findOne({email});
+const registerDB = async ({email, name, password,phone}) => {
+    const userdata = await User.findOne({email});
     
     if(userdata){
-        return res.json({
+        return {
             success:false,
             message:"User is already exist with this email",
-        });
+        };
     }
 
-    newUser = new user({name, email, password});
+    let newUser = new User({name, email, password, phone});
     return newUser.save();
 }
 
 const loginDB = async ({email}) => {
-    return await user.findOne({email});
+    return await User.findOne({email});
 }
 
 module.exports = {loginDB, registerDB}

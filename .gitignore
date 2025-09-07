@@ -1,5 +1,7 @@
 # Node modules
 server/node_modules
+client/node_modules
+admin/node_modules
 
 # Env files
 server/.env
@@ -10,6 +12,6 @@ admin/.env
 # self notes 
 
 bookingNotes.txt
-
+explain.js
 
 
