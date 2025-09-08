@@ -2,7 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const { connectDB } = require("./src/config/db");
 const authRoutes = require("./src/routes/user/user.routes");
-const driverRoutes = require("./src/routes/driver/auth.route")
+const driverRoutes = require("./src/routes/driver/auth.route");
+const vehicleRegister = require("./src/routes/driver/vehicle.route")
 const app = express()
 const port = 4001;
 
@@ -16,7 +17,11 @@ app.get("/", (req,res) => {
 
 // driver auth routes
 
-app.use("/driver", driverRoutes)
+app.use("/driver", driverRoutes);
+
+// Vehicle registration 
+
+app.use("/vehicle", vehicleRegister)
 
 //user auth routes
 
