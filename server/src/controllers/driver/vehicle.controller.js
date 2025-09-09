@@ -11,7 +11,7 @@ const vehicleRegistration = async (req, res) => {
     }
     try {
         const vehicleData = await vehicleRegistrationDB({driver,numberPlate, vehicleType, RC, color, model, capacity});
-        console.log(vehicleData)
+        // console.log(vehicleData)
         if(!vehicleData){
             return res.json({
                 success:false,
@@ -20,6 +20,11 @@ const vehicleRegistration = async (req, res) => {
         }
 
         await vehicleData.populate("driver");
+        // await vehicleData.populate({
+        //     select:"Driver",
+        //     path:"name email"
+        // });
+        
 
         return res.json({
             success:true,
@@ -29,6 +34,12 @@ const vehicleRegistration = async (req, res) => {
         
     } catch (error) {
         console.log("Error in vehicle controller", error);
+        if(error.code === 11000){
+            return res.json({
+                success:false,
+                message:"This vehicle is already asign to another driver"
+            })
+        }
         return res.json({
             success:false,
             message:"Vehicle registration failed!"
