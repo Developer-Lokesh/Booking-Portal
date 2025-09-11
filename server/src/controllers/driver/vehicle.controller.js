@@ -5,7 +5,7 @@ const vehicleRegistration = async (req, res) => {
     if(!numberPlate|| !vehicleType || !RC || !color || !model || !capacity){
         return res.json({
             success:false,
-            message:"All fields required",
+            error:"All fields required",
             require:["numberPlate", "vehicleType", "RC", "color", "model", "capacity"]
         });
     }
@@ -15,7 +15,7 @@ const vehicleRegistration = async (req, res) => {
         if(!vehicleData){
             return res.json({
                 success:false,
-                message:"Something went wrong"
+                error:"Something went wrong"
             });
         }
 
@@ -37,12 +37,12 @@ const vehicleRegistration = async (req, res) => {
         if(error.code === 11000){
             return res.json({
                 success:false,
-                message:"This vehicle is already asign to another driver"
+                error:"This vehicle is already asign to another driver"
             })
         }
         return res.json({
             success:false,
-            message:"Vehicle registration failed!"
+            error:"Vehicle registration failed!"
         });
     }
 };

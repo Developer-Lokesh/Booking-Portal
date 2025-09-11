@@ -5,7 +5,7 @@ const vehicleRegistrationDB = async ({driver,numberPlate, vehicleType, RC,  colo
     if(registration){
         return {
             success:false,
-            message:"Vehicle already exist with this RC"
+            error:"Vehicle already exist with this RC"
         };
     }
     const vehicleReg = new Vehicle({driver, numberPlate, vehicleType, RC,  color, model, capacity});

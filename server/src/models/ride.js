@@ -1,10 +1,16 @@
 const mongoose = require("mongoose");
 
+const locationSchema = new mongoose.Schema({
+    address:{type:String},
+    long:{type:Number, required:true},
+    lat:{type:Number, required:true}
+});
+
 const rideSchema = new mongoose.Schema({
     user:{type:mongoose.Schema.Types.ObjectId, ref:"User"},
     driver:{type:mongoose.Schema.Types.ObjectId, ref:"Driver"},
-    pickupLocation:{type:String, long:Number, lat:Number},
-    dropLocation:{type:String, long:Number, lat:Number},
+    pickupLocation:locationSchema,
+    dropLocation:locationSchema,
     Status:{type:String, enum:["requested", "pending", "ongoing", "completed", "cancelled"], default:"requested"},
     price:{type:Number},
     distance:{type:Number},

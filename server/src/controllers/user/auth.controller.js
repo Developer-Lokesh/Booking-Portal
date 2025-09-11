@@ -6,7 +6,7 @@ const register = async (req, res) => {
     if (!name || !email || !password || !phone) {
         return res.json({
             success: false,
-            message: "All field require",
+            error: "All field require",
             require:"['name', 'email', 'password', 'phone']"
         });
     }
@@ -15,7 +15,7 @@ const register = async (req, res) => {
         if (!user) {
             return res.json({
                 success: false,
-                message: "SignUp failed!"
+                error: "SignUp failed!"
             });
         }
         res.json({
@@ -25,7 +25,7 @@ const register = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
-        if(error===11000){
+        if(error.code===11000){
             return res.json({
                 error:"User already exist"
             });
@@ -33,7 +33,7 @@ const register = async (req, res) => {
         console.log("Error in register controller" || "Something went wrong");
         return res.json({
             success: false,
-            message: "Something went wrong"
+            error: "Something went wrong"
         });
     }
 };
@@ -43,13 +43,13 @@ const login = async (req, res) => {
     if (!email) {
         return res.json({
             success: false,
-            message: "Email is required"
+            error: "Email is required"
         });
     }
     if (!password) {
         return res.json({
             success: false,
-            message: "password is required"
+            error: "password is required"
         });
     }
     try {
@@ -58,7 +58,7 @@ const login = async (req, res) => {
         if(!user){
             return res.json({
                 success:false,
-                message:"User not found",
+                error:"User not found",
             });
         }
 
@@ -80,7 +80,7 @@ const login = async (req, res) => {
         console.log("Erron in login controller" || "Something went wrong");
         return res.json({
             success: false,
-            message: "Login failed"
+            error: "Login failed"
         });
     }
 };

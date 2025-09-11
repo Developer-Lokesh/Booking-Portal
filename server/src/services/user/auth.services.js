@@ -6,7 +6,7 @@ const registerDB = async ({email, name, password,phone}) => {
     if(userdata){
         return {
             success:false,
-            message:"User is already exist with this email",
+            error:"User is already exist with this email",
         };
     }
 

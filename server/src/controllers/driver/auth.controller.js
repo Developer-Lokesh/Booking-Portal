@@ -6,7 +6,7 @@ const register = async (req, res) => {
     if(!name || !email || !password || !phone || !licenseNumber){
         return res.json({
             success:false,
-            message:"All fields require",
+            error:"All fields require",
             require:["name", "email", "password", "phone","licenseNumber"],
         });
     }
@@ -16,7 +16,7 @@ const register = async (req, res) => {
         if(!driverAuth){
             return res.json({
                 success:false,
-                message:'SignUp failed',
+                error:'SignUp failed',
             });
         }
     
@@ -35,7 +35,7 @@ const register = async (req, res) => {
         console.log("Error in driver controller" || "Something went wrong");
         return res.json({
             success:false,
-            message: error || "Something went wrong",
+            error:  "Something went wrong",
         })
     }
 };
@@ -46,19 +46,19 @@ const login = async (req, res) => {
     if(!licenseNumber){
         res.json({
             success:false,
-            message:"Please enter the licenseNo"
+            error:"Please enter the licenseNo"
         })
     }
     if(!email){
         res.json({
             success:false,
-            message:"Please enter the email"
+            error:"Please enter the email"
         })
     }
     if(!password){
         res.json({
             success:false,
-            message:"Please enter the password"
+            error:"Please enter the password"
         })
     }
     try {
@@ -67,7 +67,7 @@ const login = async (req, res) => {
         if(!driverLogin){
             return res.json({
                 success:false,
-                message:"Driver not exist with this email"
+                error:"Driver not exist with this email"
             });
         }
          
@@ -87,7 +87,7 @@ const login = async (req, res) => {
         console.log("Error in driver login controller",error);
         return res.json({
             success:false,
-            message:"Login failed"
+            error:"Login failed"
         });
     }
 };
