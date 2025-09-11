@@ -2,16 +2,16 @@ const { registerDB, loginDB } = require("../../services/driver/auth.service");
 const { generateToken } = require("../../utils");
 
 const register = async (req, res) => {
-    const {name, email, password, phone, licenseNo} = req.body;
-    if(!name || !email || !password || !phone || !licenseNo){
+    const {name, email, password, phone, licenseNumber} = req.body;
+    if(!name || !email || !password || !phone || !licenseNumber){
         return res.json({
             success:false,
             message:"All fields require",
-            require:["name", "email", "password", "phone","licenseNo"],
+            require:["name", "email", "password", "phone","licenseNumber"],
         });
     }
     try {
-        const driverAuth = await registerDB({name, email, password, phone, licenseNo});
+        const driverAuth = await registerDB({name, email, password, phone, licenseNumber});
         // console.log(driverAuth)
         if(!driverAuth){
             return res.json({
@@ -41,9 +41,9 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    const {licenseNo, email, password} = req.body;
+    const {licenseNumber, email, password} = req.body;
     // console.log(licenseNo, email, password);
-    if(!licenseNo){
+    if(!licenseNumber){
         res.json({
             success:false,
             message:"Please enter the licenseNo"
@@ -62,7 +62,7 @@ const login = async (req, res) => {
         })
     }
     try {
-        const driverLogin = await loginDB({licenseNo, email, password});
+        const driverLogin = await loginDB({licenseNumber, email, password});
         // console.log(driverLogin,"controller")
         if(!driverLogin){
             return res.json({

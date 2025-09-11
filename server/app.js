@@ -3,7 +3,8 @@ const express = require("express");
 const { connectDB } = require("./src/config/db");
 const authRoutes = require("./src/routes/user/user.routes");
 const driverRoutes = require("./src/routes/driver/auth.route");
-const vehicleRegister = require("./src/routes/driver/vehicle.route")
+const vehicleRegister = require("./src/routes/driver/vehicle.route");
+const driverVerification = require("./src/routes/admin/verification.route");
 const app = express()
 const port = 4001;
 
@@ -21,7 +22,11 @@ app.use("/driver", driverRoutes);
 
 // Vehicle registration 
 
-app.use("/vehicle", vehicleRegister)
+app.use("/vehicle", vehicleRegister);
+
+// Driver's verification
+
+app.use("/verification", driverVerification);
 
 //user auth routes
 
