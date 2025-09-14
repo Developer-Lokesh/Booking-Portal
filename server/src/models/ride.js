@@ -7,8 +7,8 @@ const locationSchema = new mongoose.Schema({
 });
 
 const rideSchema = new mongoose.Schema({
-    user:{type:mongoose.Schema.Types.ObjectId, ref:"User"},
-    driver:{type:mongoose.Schema.Types.ObjectId, ref:"Driver"},
+    user:{type:mongoose.Schema.Types.ObjectId, ref:"User", required:true},
+    driver:{type:mongoose.Schema.Types.ObjectId, ref:"Driver", required:false},
     pickupLocation:locationSchema,
     dropLocation:locationSchema,
     Status:{type:String, enum:["requested", "pending", "ongoing", "completed", "cancelled"], default:"requested"},

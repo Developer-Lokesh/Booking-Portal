@@ -5,7 +5,8 @@ const authRoutes = require("./src/routes/user/user.routes");
 const driverRoutes = require("./src/routes/driver/auth.route");
 const vehicleRegister = require("./src/routes/driver/vehicle.route");
 const driverVerification = require("./src/routes/admin/verification.route");
-const app = express()
+const rideBooking = require("./src/routes/user/ride.route");
+const app = express();
 const port = 4001;
 
 connectDB();
@@ -30,7 +31,11 @@ app.use("/verification", driverVerification);
 
 //user auth routes
 
-app.use("/auth", authRoutes)
+app.use("/auth", authRoutes);
+
+// booking ride
+
+app.use("/booking", rideBooking);
 
 app.listen(port,() => {
     console.log(`server is running on http://localhost:${port}`);

@@ -1,0 +1,89 @@
+const { getrideDB, cancelRideDB, bookrideDB } = require("../../services/user/ride.service");
+
+const getride = async (req, res) => {
+    try {
+        const rides = await getrideDB();
+        if (!rides) {
+            return res.json({
+                success: false,
+                error: "Rides not found"
+            });
+        }
+        return res.json({
+            success: true,
+            message: "Your rides",
+            data: rides
+        })
+    } catch (error) {
+        console.log(error);
+        return res.json({
+            success: false,
+            error: "Something went wrong"
+        });
+    }
+};
+
+const bookride = async (req, res) => {
+    const { user, driver, pickupLocation, dropLocation, price, distance, duration, otp } = req.body;
+
+    if (!user || !driver || !pickupLocation || !dropLocation || !price || !distance || !duration || !otp) {
+        return res.json({
+            success: false,
+            error: "All fields required!",
+            require: ["user", "driver", "pickuplocation", "droplocation", "price", "distance", "duration", "otp"]
+        });
+    }
+    try {
+        const ride = await bookrideDB({ user, driver, pickupLocation, dropLocation, price, distance, duration, opt });
+        if (!ride) {
+            return res.json({
+                success: false,
+                error: "Booking failed!"
+            });
+        }
+        return res.json({
+            success: true,
+            message: "Ride booked successfully",
+            data: ride
+        })
+
+    } catch (error) {
+        console.log(error);
+        return res.json({
+            success: false,
+            error: "Something went wrong"
+        })
+    }
+};
+
+const cancelRide = async (req, res) => {
+    const { Id } = req.params;
+    if (!Id) {
+        return res.json({
+            success: false,
+            error: "Id is required"
+        });
+    }
+    try {
+        const cancelled = await cancelRideDB({ Id });
+        if(!cancelled){
+            return res.json({
+                success:false,
+                error:"Something went wrong while cancelled"
+            });
+        }
+        return res.json({
+            success:true,
+            messaage:"Ride cancelled successfully",
+            data:cancelled
+        })
+    } catch (error) {
+        console.log(error);
+        return res.json({
+            success: false,
+            error: "Something went wrong"
+        });
+    }
+};
+
+module.exports = { getride, bookride, cancelRide }
