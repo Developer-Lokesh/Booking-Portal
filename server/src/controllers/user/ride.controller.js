@@ -56,6 +56,9 @@ const bookride = async (req, res) => {
     }
 };
 
+
+const updateRideLocation = async (req, res) => {};
+
 const cancelRide = async (req, res) => {
     const { Id } = req.params;
     if (!Id) {
@@ -65,7 +68,7 @@ const cancelRide = async (req, res) => {
         });
     }
     try {
-        const cancelled = await cancelRideDB({ Id });
+        const cancelled = await cancelRideDB({Id});
         if(!cancelled){
             return res.json({
                 success:false,
@@ -86,4 +89,4 @@ const cancelRide = async (req, res) => {
     }
 };
 
-module.exports = { getride, bookride, cancelRide }
+module.exports = { getride, bookride, updateRideLocation, cancelRide }
