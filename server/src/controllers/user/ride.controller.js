@@ -1,4 +1,4 @@
-const { getrideDB, cancelRideDB, bookrideDB } = require("../../services/user/ride.service");
+const { getrideDB, cancelRideDB, bookrideDB, updateRideLocationDB } = require("../../services/user/ride.service");
 
 const getride = async (req, res) => {
     try {
@@ -57,7 +57,35 @@ const bookride = async (req, res) => {
 };
 
 
-const updateRideLocation = async (req, res) => {};
+const updateRideLocation = async (req, res) => {
+    const { Id } = req.params;
+    if (!Id) {
+        return res.json({
+            success: false,
+            error: "Ride not found"
+        });
+    }
+    try {
+        const updateData = await updateRideLocationDB(Id, { dropLocation });
+        if(!updateData){
+            return res.json({
+                success:false,
+                error:"Something went wrong while updation"
+            });
+        }
+        return res.json({
+            success:true,
+            message:"Location updated successfully",
+            data:updateData
+        });
+    } catch (error) {
+        console.log("Error in Ride controller", error);
+        return res.json({
+            success: false,
+            error: "Something went wrong"
+        })
+    }
+};
 
 const cancelRide = async (req, res) => {
     const { Id } = req.params;
@@ -68,17 +96,17 @@ const cancelRide = async (req, res) => {
         });
     }
     try {
-        const cancelled = await cancelRideDB({Id});
-        if(!cancelled){
+        const cancelled = await cancelRideDB({ Id });
+        if (!cancelled) {
             return res.json({
-                success:false,
-                error:"Something went wrong while cancelled"
+                success: false,
+                error: "Something went wrong while cancelled"
             });
         }
         return res.json({
-            success:true,
-            messaage:"Ride cancelled successfully",
-            data:cancelled
+            success: true,
+            messaage: "Ride cancelled successfully",
+            data: cancelled
         })
     } catch (error) {
         console.log(error);
