@@ -1,5 +1,5 @@
 const { registerDB, loginDB } = require("../../services/driver/auth.service");
-const { generateToken } = require("../../utils");
+const { generateToken, hashPassword, verifyPassword } = require("../../utils");
 
 const register = async (req, res) => {
     const {name, email, password, phone, licenseNumber} = req.body;
@@ -11,8 +11,13 @@ const register = async (req, res) => {
         });
     }
     try {
-        const driverAuth = await registerDB({name, email, password, phone, licenseNumber});
+        const hashpass = await hashPassword(password)
+        const driverAuth = await registerDB({name, email, password:hashpass, phone, licenseNumber});
         // console.log(driverAuth)
+
+        driverAuth.password = undefined;
+        driverAuth.__v = undefined;
+
         if(!driverAuth){
             return res.json({
                 success:false,
@@ -68,6 +73,15 @@ const login = async (req, res) => {
             return res.json({
                 success:false,
                 error:"Driver not exist with this email"
+            });
+        }
+
+        const checkpass = await verifyPassword(password,driverLogin.password);
+
+        if(!checkpass){
+            return res.json({
+                success:false,
+                error:"incorrect password"
             });
         }
          

@@ -14,7 +14,7 @@ const updateRideLocationDB = async (Id, location) => {
 };
 
 const cancelRideDB = async (Id) => {
-    return await Ride.findByIdAndDelete(Id, {status:"cancelled"}, {new:true});
+    return await Ride.findByIdAndUpdate(Id, {status:"cancelled"}, {new:true});
 };
 
 

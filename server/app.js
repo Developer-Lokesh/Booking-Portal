@@ -6,7 +6,7 @@ const driverRoutes = require("./src/routes/driver/auth.route");
 const vehicleRegister = require("./src/routes/driver/vehicle.route");
 const driverVerification = require("./src/routes/admin/verification.route");
 const rideBooking = require("./src/routes/user/ride.route");
-const getAllUsers = require("./src/routes/admin/user.route")
+const getAllUsers = require("./src/routes/admin/user.route");
 const app = express();
 const port = 4001;
 

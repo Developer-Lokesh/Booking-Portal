@@ -9,7 +9,7 @@ const vehicleSchema = new mongoose.Schema({
     model:{type:String, required:true},
     capacity:{type:Number, default:1}
 },
-{versionkey:false}
+{timestamps:true}
 );
 
 const Vehicle = mongoose.model("Vehicle", vehicleSchema);

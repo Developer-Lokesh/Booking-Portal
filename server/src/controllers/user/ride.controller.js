@@ -23,10 +23,12 @@ const getride = async (req, res) => {
     }
 };
 
-const bookride = async (req, res) => {
-    const { user, driver, pickupLocation, dropLocation, price, distance, duration, otp } = req.body;
 
-    if (!user || !driver || !pickupLocation || !dropLocation || !price || !distance || !duration || !otp) {
+
+const bookride = async (req, res) => {
+    const { user, driver, pickupLocation, dropLocation , price , distance, duration, otp } = req.body;
+
+    if (!user || !driver || !pickupLocation || !dropLocation || !price || !distance || !duration || !otp ) {
         return res.json({
             success: false,
             error: "All fields required!",
@@ -34,7 +36,8 @@ const bookride = async (req, res) => {
         });
     }
     try {
-        const ride = await bookrideDB({ user, driver, pickupLocation, dropLocation, price, distance, duration, opt });
+        // 
+        const ride = await bookrideDB({ user, driver, pickupLocation, dropLocation , price, distance, duration, otp });
         if (!ride) {
             return res.json({
                 success: false,
@@ -59,6 +62,7 @@ const bookride = async (req, res) => {
 
 const updateRideLocation = async (req, res) => {
     const { Id } = req.params;
+    const {dropLocation} = req.body;
     if (!Id) {
         return res.json({
             success: false,
@@ -89,6 +93,7 @@ const updateRideLocation = async (req, res) => {
 
 const cancelRide = async (req, res) => {
     const { Id } = req.params;
+    console.log(Id);
     if (!Id) {
         return res.json({
             success: false,
@@ -96,7 +101,8 @@ const cancelRide = async (req, res) => {
         });
     }
     try {
-        const cancelled = await cancelRideDB({ Id });
+        const cancelled = await cancelRideDB( Id );
+        console.log(cancelled)
         if (!cancelled) {
             return res.json({
                 success: false,

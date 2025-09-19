@@ -6,6 +6,6 @@ const router = express.Router();
 router.get("/getride", getride);
 router.post("/bookride", bookride);
 router.put("/update-location/:Id",updateRideLocation)
-router.delete("/cancelRide/:Id", cancelRide);
+router.put("/cancelRide/:Id", cancelRide);
 
 module.exports = router;
