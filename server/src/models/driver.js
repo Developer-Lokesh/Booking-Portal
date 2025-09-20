@@ -10,10 +10,7 @@ const driverSchema = new mongoose.Schema({
     verificationStatus: { type: String, enum: ["pending", "approved", "rejected"], default: "pending" },
     isVerified: { type: Boolean, default: false },
     status: { type: String, enum: ["online", "busy", "offline"], default: "offline" },
-    location: {
-        type: { type: String, enum: ["point"], default: "point" },
-        coordinate: { type: Number, default: [0, 0], required:true },
-    },
+   
     // rating:{type:Number, default:0},
     // totalRide:{type:Number, default:0},
     // vehicle:{type:mongoose.Schema.Types.ObjectId, ref:"Vehicle", required:true}

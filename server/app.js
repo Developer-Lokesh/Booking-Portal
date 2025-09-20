@@ -7,6 +7,7 @@ const vehicleRegister = require("./src/routes/driver/vehicle.route");
 const driverVerification = require("./src/routes/admin/verification.route");
 const rideBooking = require("./src/routes/user/ride.route");
 const getAllUsers = require("./src/routes/admin/user.route");
+const permitReg = require("./src/routes/driver/permit.route");
 const app = express();
 const port = 4001;
 
@@ -20,7 +21,7 @@ app.get("/", (req,res) => {
 
 // get all users and drivers 
 
-app.use("/users", getAllUsers )
+app.use("/users", getAllUsers );
 
 // driver auth routes
 
@@ -29,6 +30,10 @@ app.use("/driver", driverRoutes);
 // Vehicle registration 
 
 app.use("/vehicle", vehicleRegister);
+
+// permit registration
+
+app.use("/permitreg", permitReg);
 
 // Driver's verification
 
