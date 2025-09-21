@@ -12,7 +12,9 @@ const driverFunctions = require("./src/routes/driver/index");
 const userFunctions = require("./src/routes/user/index");
 const adminFunctions = require("./src/routes/admin/index");
 const authMiddleware = require("./src/middleware/auth.middleware");
-const adminOnly = require("./src/middleware/adim.middleare")
+const adminOnly = require("./src/middleware/adim.middleare");
+const auth = require("./src/routes/user.routes");
+const driverAuthen = require("./src/routes/driverAuth.route")
 const app = express();
 const port = 4001;
 
@@ -24,15 +26,19 @@ app.get("/", (req,res) => {
     res.send("This is the starting of booking portal");  
 });
 
+app.use("/auth", auth);
+app.use("/driverAuth", driverAuthen);
+
 app.use(authMiddleware)
 
-// driver function
-
-app.use("/driver", driverFunctions);
 
 // user Functions
 
 app.use("/user", userFunctions);
+
+// driver function
+
+app.use("/driver", driverFunctions);
 
 // admin function
 

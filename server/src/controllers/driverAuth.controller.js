@@ -1,5 +1,5 @@
-const { registerDB, loginDB } = require("../../services/driver/auth.service");
-const { generateToken, hashPassword, verifyPassword } = require("../../utils");
+const { registerDB, loginDB } = require("../services/driver/auth.service");
+const { generateToken, hashPassword, verifyPassword } = require("../utils");
 
 const register = async (req, res) => {
     const {name, email, password, phone, licenseNumber} = req.body;
