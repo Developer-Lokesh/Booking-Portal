@@ -1,13 +1,15 @@
 require("dotenv").config();
 const express = require("express");
 const { connectDB } = require("./src/config/db");
-const authRoutes = require("./src/routes/user/user.routes");
-const driverRoutes = require("./src/routes/driver/auth.route");
-const vehicleRegister = require("./src/routes/driver/vehicle.route");
-const driverVerification = require("./src/routes/admin/verification.route");
-const rideBooking = require("./src/routes/user/ride.route");
-const getAllUsers = require("./src/routes/admin/user.route");
-const permitReg = require("./src/routes/driver/permit.route");
+// const authRoutes = require("./src/routes/user/user.routes");
+// const driverRoutes = require("./src/routes/driver/auth.route");
+// const vehicleRegister = require("./src/routes/driver/vehicle.route");
+// const driverVerification = require("./src/routes/admin/verification.route");
+// const rideBooking = require("./src/routes/user/ride.route");
+// const getAllUsers = require("./src/routes/admin/user.route");
+// const permitReg = require("./src/routes/driver/permit.route");
+const driverFunctions = require("./src/routes/driver/index");
+const userFunctions = require("./src/routes/user/index");
 const app = express();
 const port = 4001;
 
@@ -19,33 +21,41 @@ app.get("/", (req,res) => {
     res.send("This is the starting of booking portal");  
 });
 
+// driver function
+
+app.use("/driver", driverFunctions);
+
+// user Functions
+
+app.use("/user", userFunctions);
+
 // get all users and drivers 
 
-app.use("/users", getAllUsers );
+// app.use("/users", getAllUsers );
 
-// driver auth routes
+// // driver auth routes
 
-app.use("/driver", driverRoutes);
+// app.use("/driver", driverRoutes);
 
-// Vehicle registration 
+// // Vehicle registration 
 
-app.use("/vehicle", vehicleRegister);
+// app.use("/vehicle", vehicleRegister);
 
-// permit registration
+// // permit registration
 
-app.use("/permitreg", permitReg);
+// app.use("/permitreg", permitReg);
 
-// Driver's verification
+// // Driver's verification
 
-app.use("/verification", driverVerification);
+// app.use("/verification", driverVerification);
 
-//user auth routes
+// //user auth routes
 
-app.use("/auth", authRoutes);
+// app.use("/auth", authRoutes);
 
-// booking ride
+// // booking ride
 
-app.use("/booking", rideBooking);
+// app.use("/booking", rideBooking);
 
 app.listen(port,() => {
     console.log(`server is running on http://localhost:${port}`);
