@@ -10,6 +10,9 @@ const { connectDB } = require("./src/config/db");
 // const permitReg = require("./src/routes/driver/permit.route");
 const driverFunctions = require("./src/routes/driver/index");
 const userFunctions = require("./src/routes/user/index");
+const adminFunctions = require("./src/routes/admin/index");
+const authMiddleware = require("./src/middleware/auth.middleware");
+const adminOnly = require("./src/middleware/adim.middleare")
 const app = express();
 const port = 4001;
 
@@ -21,6 +24,8 @@ app.get("/", (req,res) => {
     res.send("This is the starting of booking portal");  
 });
 
+app.use(authMiddleware)
+
 // driver function
 
 app.use("/driver", driverFunctions);
@@ -28,6 +33,10 @@ app.use("/driver", driverFunctions);
 // user Functions
 
 app.use("/user", userFunctions);
+
+// admin function
+
+app.use("/admin",adminOnly, adminFunctions);
 
 // get all users and drivers 
 

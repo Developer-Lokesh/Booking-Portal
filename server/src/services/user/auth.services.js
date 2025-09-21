@@ -1,6 +1,6 @@
 const User = require("../../models/user")
 
-const registerDB = async ({email, name, password,phone}) => {
+const registerDB = async ({email, name, password,phone,role}) => {
     const userdata = await User.findOne({email});
     
     if(userdata){
@@ -10,7 +10,7 @@ const registerDB = async ({email, name, password,phone}) => {
         };
     }
 
-    let newUser = new User({name, email, password, phone});
+    let newUser = new User({name, email, password, phone,role});
     return newUser.save();
 }
 

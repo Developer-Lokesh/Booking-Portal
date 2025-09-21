@@ -1,6 +1,6 @@
 const { verify } = require("jsonwebtoken");
-const { registerDB, loginDB } = require("../../services/user/auth.services");
-const { generateToken, hashPassword, verifyPassword } = require("../../utils");
+const { registerDB, loginDB } = require("../services/user/auth.services");
+const { generateToken, hashPassword, verifyPassword } = require("../utils");
 
 const register = async (req, res) => {
     const { name, email, password, phone } = req.body;
@@ -13,7 +13,7 @@ const register = async (req, res) => {
     }
     try {
         const hashpass = await hashPassword(password)
-        const user = await registerDB({ name, email, password:hashpass, phone });
+        const user = await registerDB({ name, email, password:hashpass, phone, role:"user" });
 
         user.password = undefined;
         user.__v = undefined;

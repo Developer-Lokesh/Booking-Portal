@@ -4,10 +4,11 @@ const loginDB = async ({email}) => {
     // console.log(email,"emial")
     const store =  await Driver.findOne({email});
     return store;
-    // console.log(store , "this is stroe")
+    // console.log(store , "this is store")
 };
 
-const registerDB = async ({name, email, password, phone, licenseNumber}) => {
+const registerDB = async ({name, email, password, phone, licenseNumber,role}) => {
+    console.log(role);
     const driverfind = await Driver.findOne({email});
     if(driverfind){
         return {
@@ -15,7 +16,7 @@ const registerDB = async ({name, email, password, phone, licenseNumber}) => {
             message:"Driver already exist with this email"
         };
     }
-    let driverdata = new Driver({name, email, password, licenseNumber, phone});
+    let driverdata = new Driver({name, email, password, licenseNumber, phone,role});
     return await driverdata.save();
 };
 

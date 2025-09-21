@@ -12,7 +12,7 @@ const register = async (req, res) => {
     }
     try {
         const hashpass = await hashPassword(password)
-        const driverAuth = await registerDB({name, email, password:hashpass, phone, licenseNumber});
+        const driverAuth = await registerDB({name, email, password:hashpass, phone, licenseNumber,role:"driver"});
         // console.log(driverAuth)
 
         driverAuth.password = undefined;

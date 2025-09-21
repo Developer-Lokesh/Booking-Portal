@@ -6,6 +6,7 @@ const driverSchema = new mongoose.Schema({
     password: { type: String, required: true },
     phone: { type: Number, required: true, unique: true },
     licenseNumber: { type: String, required: true, unique: true },
+    role:{type:String, enum:["driver"]},
     isAvailable: { type: Boolean, default: true },
     verificationStatus: { type: String, enum: ["pending", "approved", "rejected"], default: "pending" },
     isVerified: { type: Boolean, default: false },
