@@ -1,7 +1,8 @@
 const { permitInfoDB } = require("../../services/driver/permit.service");
 
 const permitInfo = async (req, res) => {
-   const {vehicleInfo, permitImg, registrationNumber, validityDate, RC} = req.body;
+    const vehicleInfo = req.user.id;
+   const {permitImg, registrationNumber, validityDate, RC} = req.body;
    if(!vehicleInfo || !permitImg || !registrationNumber || !validityDate || !RC){
     return res.json({
         success:false,
@@ -28,12 +29,12 @@ const permitInfo = async (req, res) => {
             return res.json({
                 success:false,
                 error:"Permit is already asign another vehicle"
-            })
+            });
         }
         return res.json({
             success:false,
             error:"Something went wrong",
-        })
+        });
     }
 };
 module.exports = {permitInfo};
