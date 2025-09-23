@@ -26,7 +26,8 @@ const getride = async (req, res) => {
 
 
 const bookride = async (req, res) => {
-    const { user, driver, pickupLocation, dropLocation , price , distance, duration, otp } = req.body;
+    const user = req.user.id;
+    const {driver, pickupLocation, dropLocation , price , distance, duration, otp } = req.body;
 
     if (!user || !driver || !pickupLocation || !dropLocation || !price || !distance || !duration || !otp ) {
         return res.json({
