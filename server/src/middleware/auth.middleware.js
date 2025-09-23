@@ -1,7 +1,7 @@
 const {verifyToken} = require("../utils/index")
 
 module.exports = (req, res, next) => {
-    const isValid = req.headers.authorization?.startwith("Bearer ");
+    const isValid = req.headers.authorization?.startsWith("Bearer ");
     if(!isValid){
         return res.json({
             success:false,

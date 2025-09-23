@@ -29,7 +29,7 @@ app.get("/", (req,res) => {
 app.use("/auth", auth);
 app.use("/driverAuth", driverAuthen);
 
-app.use(authMiddleware)
+app.use(authMiddleware);
 
 
 // user Functions

@@ -1,7 +1,9 @@
 const { vehicleRegistrationDB } = require("../../services/driver/vehicle.service");
 
 const vehicleRegistration = async (req, res) => {
-    const {driver, numberPlate, vehicleType, RC,  color, model, capacity} = req.body;
+    const driver = req.user.id;
+    console.log(driver.id)
+    const { numberPlate, vehicleType, RC,  color, model, capacity} = req.body;
     if(!numberPlate|| !vehicleType || !RC || !color || !model || !capacity){
         return res.json({
             success:false,
