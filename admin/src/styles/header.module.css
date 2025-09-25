@@ -1,0 +1,37 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header{
+    background-color: #172532;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headerElement{
+    display: flex;
+    align-items: center;
+    color: white;
+    margin-left: 20px;  
+}
+.icon{
+    width: 30px;
+    height: 30px;
+}
+.logoutbtn{
+    background-color: rgb(233, 53, 89);
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    color: white;
+    gap: 5px;
+}
+.logoutbtn:hover{
+    cursor: pointer;
+    background-color: red;
+}
