@@ -2,19 +2,13 @@ import React from 'react'
 import style from "../styles/home.module.css"
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import Layout from '../components/Layout';
 
 const Home = () => {
   return (
-    <div>
-      <Header />
-      <div className={style.body}>
-        <div>
-          <Sidebar />
-          
-        </div>
-        dashboard
-      </div>
-    </div>
+    <Layout>
+      <div>Dashboard</div>
+    </Layout>
   )
 }
 
