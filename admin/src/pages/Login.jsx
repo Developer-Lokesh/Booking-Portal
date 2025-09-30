@@ -52,6 +52,7 @@ const Login = () => {
                 alert("You are not an admin");
                 return;
             }
+            console.log(data.data.name)
 
             const token = data.data.accesstoken;
             const reftoken = data.data.reftoken;
