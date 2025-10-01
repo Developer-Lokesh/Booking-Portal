@@ -6,6 +6,7 @@ import Approvepending from "./pages/Approvepending";
 import Approved from "./pages/Approved";
 import Rejected from "./pages/Rejected"
 import Vehicle from './pages/Vehicle';
+import Approve from './pages/Approve';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/pendingapprove" element={<Approvepending/>}/>
         <Route path="/approved" element={<Approved/>}/>
+        <Route path="/approve" element={<Approve/>}/>
         <Route path='/vehiclecheck' element={<Vehicle/>}/>
         <Route path="/rejected" element={<Rejected/>}/>
         <Route path="/login" element={<Login />} />
