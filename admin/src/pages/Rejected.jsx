@@ -1,10 +1,8 @@
 import React from 'react'
-import style from "../styles/Sidebar.module.css"
-import {Link} from "react-router-dom"
+import style from "../styles/rejected.module.css"
 import Layout from '../components/Layout'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { Heading1 } from 'lucide-react'
 
 const Rejected = () => {
   const [reject, setReject] = useState([]);
@@ -25,7 +23,7 @@ const Rejected = () => {
         alert("Something went wrong");
       }
       console.log(res);
-      setReject(res);
+      setReject(res.data);
     
       } catch (error) {
         console.log(error);
@@ -35,13 +33,32 @@ const Rejected = () => {
   },[]);
   return (
     <Layout className={style.sidebarBody}>
-      {reject.length > 0 ?(
-        <div>
-          Rejected
-        </div>
-      ):
-      <h1>No rejected driver found</h1> 
-      }
+       {reject.length>0 ?(
+              <div className={style.body}>
+              <h1 className={style.heading}>Rejected drivers</h1>
+              <table className={style.table}>
+                <thead className={style.thead}>
+                  <th className={style.th}>Name</th>
+                  <th className={style.th}>Email</th>
+                  <th className={style.th}>Phone</th>
+                  <th className={style.th}>Status</th>
+                </thead>
+                <tbody>
+                  {
+                  reject.map((i, index) => (
+                    <tr key={index}>
+                      <td>{i.name}</td>
+                      <td>{i.email}</td>
+                      <td>{i.phone}</td>
+                      <td className={style.verification}>{i.verificationStatus} </td>
+                    </tr>
+                  ))
+                }
+                </tbody>
+              </table>
+            </div>):
+            <h1 className={style.heading1}>No rejected driver found</h1>
+            }
     </Layout>
   )
 }

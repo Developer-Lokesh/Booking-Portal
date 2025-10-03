@@ -1,6 +1,5 @@
 import React from 'react'
-import style from "../styles/Sidebar.module.css"
-import { Link } from "react-router-dom"
+import style from "../styles/approved.module.css"
 import Layout from '../components/Layout'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -24,7 +23,7 @@ const Approved = () => {
           alert("Something went wrong");
         }
         console.log(res);
-        setApprove(res);
+        setApprove(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -33,10 +32,31 @@ const Approved = () => {
   }, []);
   return (
     <Layout className={style.sidebarBody}>
-      {approve.length>0 ?(<div>
-        <h1>Approved drivers</h1>
+      {approve.length>0 ?(
+        <div className={style.body}>
+        <h1 className={style.heading}>Approved drivers</h1>
+        <table className={style.table}>
+          <thead className={style.thead}>
+            <th className={style.th}>Name</th>
+            <th className={style.th}>Email</th>
+            <th className={style.th}>Phone</th>
+            <th className={style.th}>Status</th>
+          </thead>
+          <tbody>
+            {
+            approve.map((i, index) => (
+              <tr key={index}>
+                <td>{i.name}</td>
+                <td>{i.email}</td>
+                <td>{i.phone}</td>
+                <td className={style.verification}>{i.verificationStatus} </td>
+              </tr>
+            ))
+          }
+          </tbody>
+        </table>
       </div>):
-      <h1 className={style.heading}>No driver found</h1>
+      <h1 className={style.heading1}>No driver found</h1>
       }
     </Layout>
   )

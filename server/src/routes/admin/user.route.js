@@ -1,9 +1,9 @@
 const express = require("express");
-const { getusers } = require("../../controllers/admin/user.controller");
+const { getusers, getdrivers } = require("../../controllers/admin/user.controller");
 
 const router = express.Router();
 
 router.get("/getusers", getusers);
-// router.get("/drivers", getDrivers);
+router.get("/getdrivers", getdrivers);
 
 module.exports = router;

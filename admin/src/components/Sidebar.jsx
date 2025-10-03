@@ -12,7 +12,7 @@ const Sidebar = () => {
         <Link className={style.link} to="/pendingapprove"><UserPen size={18} />Pending Drivers</Link>
         <Link className={style.link} to="/approved"> <UserRoundCheck size={18} />Approved Drivers</Link>
         <Link className={style.link} to="/rejected"><UserRoundX size={18} />Rejected Drivers</Link>
-        <Link className={style.link} to="/vehiclecheck"><CarTaxiFront size={18} />Approve Vehicle</Link>
+        {/* <Link className={style.link} to="/vehiclecheck"><CarTaxiFront size={18} />Approve Vehicle</Link> */}
       </div>
     </div>
   );

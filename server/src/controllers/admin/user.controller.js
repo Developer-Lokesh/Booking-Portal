@@ -1,4 +1,4 @@
-const { getUsersDB } = require("../../services/admin/user.service");
+const { getUsersDB, getDriversDB } = require("../../services/admin/user.service");
 
 const getusers = async (req,res) => {
     try {
@@ -23,4 +23,27 @@ const getusers = async (req,res) => {
     }
 }
 
-module.exports = {getusers};
+const getdrivers = async (req,res) => {
+    try {
+        const drivers = await getDriversDB();
+    if(!drivers){
+     return res.json({
+        success:false,
+        error:"Driver not found"
+     });   
+    }
+    return res.json({
+        success:true,
+        message:"Drivers fetched successfully",
+        data:drivers
+    })
+    } catch (error) {
+        console.log(error);
+        return res.json({
+            success:false,
+            error:"Something went wrong"
+        })
+    }
+}
+
+module.exports = {getusers, getdrivers};
