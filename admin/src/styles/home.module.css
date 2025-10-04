@@ -5,11 +5,13 @@
 }
 .container{
     display: flex;
+    background-color: rgb(224, 224, 224);
+
 }
 .graphcontainer{
     width: calc(100vw - 200px);
     height: 400px;
-    /* background-color: rgb(224, 224, 224); */
+    margin-top: 10px;
 }
 .graphSection{
     display: flex;

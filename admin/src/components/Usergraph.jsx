@@ -24,9 +24,15 @@ const Usergraph = () => {
                 if (!res) {
                     alert("Something went wrong while fetching users");
                 }
-                console.log(res.data[0].name, "user")
+                // console.log(res.data[0].name, "user");
 
-                setUserStatus(res.data)
+                const users = res.data.filter((i) => {
+                    return i.role==="user"
+                });
+
+                console.log(users, "users")
+
+                setUserStatus(users)
 
             } catch (error) {
                 console.log(error);
