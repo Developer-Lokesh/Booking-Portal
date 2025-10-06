@@ -1,8 +1,14 @@
 import React from 'react'
-import {Car, LogOut, ShieldUser} from "lucide-react"
+import {Car, LogOut} from "lucide-react"
 import style from "../styles/header.module.css"
+import {AuthContext} from '../context/AuthProvider'
+import { useContext } from 'react'
 
 const Header = () => {
+  const {admin} = useContext(AuthContext);
+
+  // console.log(admin, "this is data")
+
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("reftoken");
@@ -16,7 +22,9 @@ const Header = () => {
       </div>
       <div className={style.bottons}>
         <button onClick={logout} className={style.logoutbtn}>Logout<LogOut/></button>
-      <div className={style.profile}>L</div>
+      <div className={style.profile}>
+        {admin ? admin.name[0] : "A"}
+      </div>
       </div>
     </div>
   )

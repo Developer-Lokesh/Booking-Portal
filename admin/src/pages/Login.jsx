@@ -9,7 +9,7 @@ const Login = () => {
 
      useEffect(()=>{
             if(localStorage.getItem("token")){
-                window.location.href = "/"
+                window.location.href = "/login"
             }
         },[]);
 
@@ -52,7 +52,7 @@ const Login = () => {
                 alert("You are not an admin");
                 return;
             }
-            console.log(data.data.name)
+            // console.log(data.data.name)
 
             const token = data.data.accesstoken;
             const reftoken = data.data.reftoken;

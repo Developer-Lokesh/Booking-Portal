@@ -3,20 +3,21 @@
     padding: 0;
     box-sizing: border-box;
 }
-.container{
-    display: flex;
-    background-color: rgb(224, 224, 224);
-
-}
-.graphcontainer{
+.body{
+    /* display: flex; */
+    height: calc(100vh - 60px);
     width: calc(100vw - 200px);
-    height: 400px;
-    margin-top: 10px;
+    background-color: rgb(233, 233, 233);
+    overflow-y: scroll;
 }
+
 .graphSection{
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-    /* justify-content: space-around; */
-    /* background-color: aqua; */
+    gap: 10px;
+}
+.card{
+    background-color: rgb(255, 255, 255);
+    margin: 10px;
 }

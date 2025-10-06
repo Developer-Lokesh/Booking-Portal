@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 // import style from "../styles/Sidebar.module.css"
 import style from "../styles/approvepending.module.css"
 import { Link } from "react-router-dom"
 import Layout from '../components/Layout'
+// import DriverContext from '../context/DriverContext'
 
 const Approvepending = () => {
   const [drivers, setDrivers] = useState([]);
@@ -22,7 +23,7 @@ const Approvepending = () => {
         if (!res) {
           alert("Something went wrong");
         }
-        console.log(res);
+        // console.log(res);
         setDrivers(res.data);
       } catch (error) {
         console.log(error);
@@ -33,16 +34,18 @@ const Approvepending = () => {
   }, []);
   return (
     <Layout className={style.sidebarBody}>
-      {drivers.length > 0 ?(
+      {drivers.length > 0 ? (
         <div className={style.body}>
           <h1 className={style.heading}>Pending drivers</h1>
           <div className={style.container}>
             <table >
               <thead>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>View</th>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>View</th>
+                </tr>
               </thead>
               <tbody >
                 {
@@ -59,8 +62,8 @@ const Approvepending = () => {
             </table>
           </div>
         </div>
-      ):
-      <h1 className={style.heading1}>No request found</h1>
+      ) :
+        <h1 className={style.heading1}>No request found</h1>
       }
     </Layout>
   )

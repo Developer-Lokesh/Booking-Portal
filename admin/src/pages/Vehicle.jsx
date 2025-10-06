@@ -19,7 +19,7 @@ const Vehicle = () => {
         if(!res){
           alert("Something went wrong");
         }
-        console.log(res);
+        // console.log(res);
         setVehicle(res);
       
         } catch (error) {

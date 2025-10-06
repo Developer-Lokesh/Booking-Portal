@@ -47,33 +47,6 @@ app.use("/driver", driverFunctions);
 
 app.use("/admin",adminOnly, adminFunctions);
 
-// get all users and drivers 
-
-// app.use("/users", getAllUsers );
-
-// // driver auth routes
-
-// app.use("/driver", driverRoutes);
-
-// // Vehicle registration 
-
-// app.use("/vehicle", vehicleRegister);
-
-// // permit registration
-
-// app.use("/permitreg", permitReg);
-
-// // Driver's verification
-
-// app.use("/verification", driverVerification);
-
-// //user auth routes
-
-// app.use("/auth", authRoutes);
-
-// // booking ride
-
-// app.use("/booking", rideBooking);
 
 app.listen(port,() => {
     console.log(`server is running on http://localhost:${port}`);
