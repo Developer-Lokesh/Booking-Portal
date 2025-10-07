@@ -16,11 +16,11 @@ const Home = () => {
       <div className={style.body}>
         <div className={style.graphSection}>
 
-          <div className={style.card}><Usergraph /></div>
-          <div className={style.card}> <Approved /></div>
-          <div className={style.card}><Drivergraph /></div>
-          <div className={style.card}><Pending /></div>
-          <div className={style.card}> <Rejected /></div>
+          <div className={style.card}> <Usergraph /> </div>
+          <div className={style.card}> <Approved /> </div>
+          <div className={style.card}> <Drivergraph /> </div>
+          <div className={style.card}> <Pending /> </div>
+          <div className={style.card}> <Rejected /> </div>
 
         </div>
       </div>

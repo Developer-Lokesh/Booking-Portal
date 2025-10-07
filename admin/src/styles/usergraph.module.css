@@ -27,6 +27,13 @@ p{
     right: 0;
     top: 0;
 }
+.link{
+    color:blue;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-decoration: none;
+}
 hr{
     color: rgb(197, 197, 197);
 }
@@ -45,5 +52,4 @@ ul li{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
 }
