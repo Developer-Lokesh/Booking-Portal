@@ -1,9 +1,8 @@
 const Driver = require("../../models/driver");
+const Vehicle = require("../../models/vehicle");
 
 const getPendingDriversDB = async () => {
     return await Driver.find({verificationStatus:"pending"});
-    // console.log(drivers, "Service");
-    // return drivers;
 };
 
 const approveDriversDB = async () => {
@@ -12,6 +11,13 @@ const approveDriversDB = async () => {
 
 const rejectedDriversDB = async () => {
     return await Driver.find({verificationStatus:"rejected"})
+}
+
+const driverProfileDB = async (id) => {
+    console.log(id, "in serveri")
+    const info = await Driver.findById(id).populate("Vehicle").populate("permit");
+    console.log(info)
+    return info;
 }
 
 const approveDriverDB = async (Id) => {
@@ -39,4 +45,4 @@ const rejectDriverDB = async (Id) => {
     return driver;
 }; 
 
-module.exports = {getPendingDriversDB, approveDriverDB, rejectDriverDB, approveDriversDB, rejectedDriversDB};
+module.exports = {getPendingDriversDB, approveDriverDB, rejectDriverDB, approveDriversDB, rejectedDriversDB, driverProfileDB};

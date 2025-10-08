@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-// import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import style from "../styles/usergraph.module.css"
 import { useContext } from 'react';
 import {UserProvider} from '../context/UserContext';

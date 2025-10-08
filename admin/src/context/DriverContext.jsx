@@ -23,7 +23,7 @@ const DriverContext = ({children}) => {
             });
     
             const res1 = await driver.json();
-    
+            console.log(res1)
             if(!res1){
               alert("Something went wrong while fetching driver");
             }

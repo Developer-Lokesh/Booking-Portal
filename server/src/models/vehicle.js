@@ -7,7 +7,8 @@ const vehicleSchema = new mongoose.Schema({
     vehicleType:{type:String, enum:["Sedan", "SUV","Bike"], default:"Bike"},
     color:{type:String, required:true},
     model:{type:String, required:true},
-    capacity:{type:Number, default:1}
+    capacity:{type:Number, default:1},
+    // permit:{type:mongoose.Schema.Types.ObjectId, ref:"Permit"}
 },
 {timestamps:true}
 );

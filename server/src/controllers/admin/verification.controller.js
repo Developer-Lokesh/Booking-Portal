@@ -1,9 +1,8 @@
-const { getPendingDriversDB, approveDriverDB, rejectDriverDB, approveDriversDB, rejectedDriversDB } = require("../../services/admin/verification.service");
+const { getPendingDriversDB, approveDriverDB, rejectDriverDB, approveDriversDB, rejectedDriversDB, driverProfileDB } = require("../../services/admin/verification.service");
 
 const getPendingDrivers = async (req, res) => {
     try {
         const drivers = await getPendingDriversDB();
-        // console.log(drivers, "Drivers");
         if (!drivers) {
             return res.json({
                 success: false,
@@ -46,6 +45,33 @@ const approvedDrivers = async (req, res) => {
         });
     }
 };
+
+const driverProfile = async (req, res) => {
+    const {id} = req.params;
+    console.log(id)
+
+    try {
+        const profile = await driverProfileDB(id);
+        console.log(profile)
+        if(!profile){
+            return res.json({
+                success:false,
+                error:"Something went wrong"
+            });
+        }
+        return res.json({
+            success:true,
+            message:"Driver Information fetched successfully",
+            data:profile
+        })
+    } catch (error) {
+        console.log(error)
+        return res.json({
+            success:false,
+            error: "Something went wrong aa"
+        })
+    }
+}
 
 const approveDriver = async (req, res) => {
     const { Id } = req.params;
@@ -131,4 +157,4 @@ const rejectedDrivers = async (req, res) => {
     }
 }
 
-module.exports = { getPendingDrivers, approveDriver, rejectDriver, approvedDrivers, rejectedDrivers };
+module.exports = { getPendingDrivers, approveDriver, rejectDriver, approvedDrivers, rejectedDrivers, driverProfile };

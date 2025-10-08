@@ -4,11 +4,13 @@
     box-sizing: border-box;
 }
 .body{
-    /* display: flex; */
+    display: flex;
+    flex-wrap: wrap;
     height: calc(100vh - 60px);
     width: calc(100vw - 200px);
     background-color: rgb(233, 233, 233);
     overflow-y: scroll;
+    border-radius: 8px;
 }
 
 .graphSection{
@@ -20,4 +22,6 @@
 .card{
     background-color: rgb(255, 255, 255);
     margin: 10px;
+    height: 440px;
+    border-radius: 8px;
 }

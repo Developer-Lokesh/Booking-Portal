@@ -2,18 +2,12 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors")
 const { connectDB } = require("./src/config/db");
-// const authRoutes = require("./src/routes/user/user.routes");
-// const driverRoutes = require("./src/routes/driver/auth.route");
-// const vehicleRegister = require("./src/routes/driver/vehicle.route");
-// const driverVerification = require("./src/routes/admin/verification.route");
-// const rideBooking = require("./src/routes/user/ride.route");
-// const getAllUsers = require("./src/routes/admin/user.route");
-// const permitReg = require("./src/routes/driver/permit.route");
 const driverFunctions = require("./src/routes/driver/index");
 const userFunctions = require("./src/routes/user/index");
 const adminFunctions = require("./src/routes/admin/index");
 const authMiddleware = require("./src/middleware/auth.middleware");
-const adminOnly = require("./src/middleware/adim.middleare");
+const adminOnly = require("./src/middleware/adim.middleware");
+const driverOnly = require("./src/middleware/driver.middleware")
 const auth = require("./src/routes/user.routes");
 const driverAuthen = require("./src/routes/driverAuth.route")
 const app = express();
@@ -41,7 +35,7 @@ app.use("/user", userFunctions);
 
 // driver function
 
-app.use("/driver", driverFunctions);
+app.use("/driver", driverOnly, driverFunctions);
 
 // admin function
 
