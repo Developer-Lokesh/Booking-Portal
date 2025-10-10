@@ -6,11 +6,13 @@ import { useState } from 'react'
 export const UserProvider = createContext();
 
 const UserContext = ({children}) => {
+    const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(null);
 
     useEffect(()=>{
         const fetchData = async () => {
             try {
+                setLoading(true);
                const url = import.meta.env.VITE_SERVER_URL;
                const token = localStorage.getItem("token");
                
@@ -34,11 +36,14 @@ const UserContext = ({children}) => {
                 console.log(error);
                 return;
             }
+            finally{
+                setLoading(false)
+            }
         }
         fetchData();
     },[]);
   return (
-    <UserProvider.Provider value={{ user , setUser}}>
+    <UserProvider.Provider value={{ user , setUser , loading, setLoading}}>
         {children}
     </UserProvider.Provider>
   )

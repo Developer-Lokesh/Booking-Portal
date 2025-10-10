@@ -1,15 +1,19 @@
 import React, { useContext, useEffect, useState } from 'react'
 // import style from "../styles/Sidebar.module.css"
 import style from "../styles/approvepending.module.css"
+import styles from "../styles/loading.module.css"
 import { Link } from "react-router-dom"
 import Layout from '../components/Layout'
+import { Loader } from 'lucide-react'
 // import DriverContext from '../context/DriverContext'
 
 const Approvepending = () => {
+  const [loading, setLoading] = useState(false);
   const [drivers, setDrivers] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const url = import.meta.env.VITE_SERVER_URL;
         const token = localStorage.getItem("token");
         const data = await fetch(`${url}/admin/verification/pending-drivers`, {
@@ -28,13 +32,20 @@ const Approvepending = () => {
       } catch (error) {
         console.log(error);
       }
+      finally{
+        setLoading(false)
+      }
 
     }
     fetchData();
   }, []);
   return (
     <Layout className={style.sidebarBody}>
-      {drivers.length > 0 ? (
+      {loading ? (
+        <div className={styles.loading}>
+          <div className={styles.loader}><Loader size={50}/></div><br />
+        </div>
+      ) : drivers.length > 0 ? (
         <div className={style.body}>
           <h1 className={style.heading}>Pending drivers</h1>
           <div className={style.container}>

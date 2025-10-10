@@ -1,16 +1,22 @@
 import React, { useContext } from 'react'
 import Layout from '../components/Layout'
-import style from "../styles/user.module.css";
+import style from "../styles/user.module.css"
+import styles from "../styles/loading.module.css"
 import { UserProvider } from '../context/UserContext'
+import { Loader } from 'lucide-react';
 
 const User = () => {
-    const {user} = useContext(UserProvider);
+    const {user, loading} = useContext(UserProvider);
 
     const users = user?.filter((i) => i.role === "user")||[];
 
   return (
     <Layout className={style.sidebarBody}>
-      {user?.length > 0 ? (
+      {loading ? (
+        <div className={styles.loading}>
+          <div className={styles.loader}><Loader size={50}/></div><br />
+        </div>
+      ) : user?.length > 0 ? (
         <div className={style.body}>
           <h1 className={style.heading}>Users</h1>
           <table className={style.table}>
@@ -42,4 +48,4 @@ const User = () => {
   )
 }
 
-export default User
+export default User;

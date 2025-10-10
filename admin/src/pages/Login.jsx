@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import style from "../styles/login.module.css"
 const Login = () => {
-    const [loading, setLoading] = useState(false)
+    // const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         email:"",
         password:""
@@ -30,7 +30,7 @@ const Login = () => {
             return;
         }
         try {
-            setLoading(true);
+            // setLoading(true);
 
             const url = import.meta.env.VITE_SERVER_URL;
             const res = await fetch(`${url}/auth/login`, {
@@ -64,9 +64,6 @@ const Login = () => {
             window.location.href="/"
         } catch (error) {
             console.log("error :- " ,error)
-        }
-        finally {
-            setLoading(false);
         }
     }
     return (

@@ -10,13 +10,11 @@ import Rejected from "../components/Rejected";
 // import { useContext } from "react";
 
 const Home = () => {
-  // const { user } = useContext(UserContext)
+  // const [loading, setLoading] = useState(false)
   return (
     <Layout>
       <div className={style.body}>
-        {/* <div className={style.graphSection}>
-
-        </div> */}
+        
 
           <div className={style.card}> <Usergraph /> </div>
           <div className={style.card}> <Approved /> </div>

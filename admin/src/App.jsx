@@ -19,15 +19,15 @@ const App = () => {
         <UserContext>
           <DriverContext>
             <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/pendingapprove" element={<Approvepending />} />
-            <Route path="/approved" element={<Approved />} />
-            <Route path="/approve" element={<Approve />} />
-            {/* <Route path='/vehiclecheck' element={<Vehicle/>}/> */}
-            <Route path="/rejected" element={<Rejected />} />
-            <Route path="/users" element={<User/>}/>
-            <Route path="/login" element={<Login />} />
-          </Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/pendingapprove" element={<Approvepending />} />
+              <Route path="/approved" element={<Approved />} />
+              <Route path="/approve" element={<Approve />} />
+              {/* <Route path='/vehiclecheck' element={<Vehicle/>}/> */}
+              <Route path="/rejected" element={<Rejected />} />
+              <Route path="/users" element={<User />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
           </DriverContext>
         </UserContext>
       </AuthProvider>
