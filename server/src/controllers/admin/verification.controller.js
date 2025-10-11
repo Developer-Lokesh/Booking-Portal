@@ -65,7 +65,7 @@ const driverProfile = async (req, res) => {
             data:profile
         })
     } catch (error) {
-        console.log(error)
+        console.log("error in driver profile", error)
         return res.json({
             success:false,
             error: "Something went wrong aa"
@@ -121,7 +121,7 @@ const rejectDriver = async (req, res) => {
             });
         }
         return res.json({
-            success: false,
+            success: true,
             message: "Driver rejected!",
             data: driver
         })

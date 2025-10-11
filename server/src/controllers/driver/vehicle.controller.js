@@ -3,8 +3,8 @@ const { vehicleRegistrationDB } = require("../../services/driver/vehicle.service
 const vehicleRegistration = async (req, res) => {
     const driver = req.user.id;
     console.log(driver.id)
-    const { numberPlate, vehicleType, RC,  color, model, capacity} = req.body;
-    if(!numberPlate|| !vehicleType || !RC || !color || !model || !capacity){
+    const { numberPlate, vehicleName, RC,  color, model, capacity} = req.body;
+    if(!numberPlate|| !vehicleName || !RC || !color || !model || !capacity){
         return res.json({
             success:false,
             error:"All fields required",
@@ -12,7 +12,7 @@ const vehicleRegistration = async (req, res) => {
         });
     }
     try {
-        const vehicleData = await vehicleRegistrationDB({driver,numberPlate, vehicleType, RC, color, model, capacity});
+        const vehicleData = await vehicleRegistrationDB({driver,numberPlate, vehicleName, RC, color, model, capacity});
         // console.log(vehicleData)
         if(!vehicleData){
             return res.json({
@@ -21,7 +21,7 @@ const vehicleRegistration = async (req, res) => {
             });
         }
 
-        await vehicleData.populate("driver");
+        // await vehicleData.populate("driver");
         // await vehicleData.populate({
         //     select:"Driver",
         //     path:"name email"

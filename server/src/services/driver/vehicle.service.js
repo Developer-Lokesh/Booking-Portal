@@ -1,6 +1,6 @@
 const Vehicle = require("../../models/vehicle");
 
-const vehicleRegistrationDB = async ({driver,numberPlate, vehicleType, RC,  color, model, capacity}) => {
+const vehicleRegistrationDB = async ({driver,numberPlate, vehicleName, RC,  color, model, capacity}) => {
     const registration = await Vehicle.findOne({RC});
     if(registration){
         return {
@@ -8,7 +8,7 @@ const vehicleRegistrationDB = async ({driver,numberPlate, vehicleType, RC,  colo
             error:"Vehicle already exist with this RC"
         };
     }
-    const vehicleReg = new Vehicle({driver, numberPlate, vehicleType, RC,  color, model, capacity});
+    const vehicleReg = new Vehicle({driver, numberPlate, vehicleName, RC,  color, model, capacity});
     return vehicleReg.save();
 };
 
