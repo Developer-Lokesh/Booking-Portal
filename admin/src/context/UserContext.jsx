@@ -27,7 +27,7 @@ const UserContext = ({children}) => {
                 const data = await res.json();
 
                 if(!data.success){
-                    alert("Something went wrong");
+                    // alert("Something went wrong");
                     return;
                 }
 

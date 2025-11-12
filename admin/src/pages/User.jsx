@@ -16,7 +16,7 @@ const User = () => {
         <div className={styles.loading}>
           <div className={styles.loader}><Loader size={50}/></div><br />
         </div>
-      ) : user?.length > 0 ? (
+      ) : (user && user?.length > 0 ? (
         <div className={style.body}>
           <h1 className={style.heading}>Users</h1>
           <table className={style.table}>
@@ -42,7 +42,7 @@ const User = () => {
             </tbody>
           </table>
         </div>) :
-        <h1 className={style.heading1}>No Users found</h1>
+        (<h1 className={style.heading1}>No Users found</h1>))
       }
     </Layout>
   )

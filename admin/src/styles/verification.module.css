@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.heading{
+    margin: 10px;
+}
+.container{
+    width: calc(100vw - 200px);
+    height: calc(100vh - 60px);
+    overflow-y: scroll;
+    /* background-color: aqua; */
+}
+.body{
+    /* width: calc(100vw - 250px); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* background-color: blue; */
+}
+.cards{
+    display: flex;
+    /* justify-content: end; */
+    /* flex-direction: column; */
+    /* row-gap: 5px; */
+    /* margin-left: 10px; */
+    /* width: 700px; */
+    /* height: 300px; */
+    /* width: calc(100vw - 250px); */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    /* background-color: red; */
+    border-radius: 20px;
+    margin: 10px;
+
+}
+
+.driver{
+    background-color: rgb(227, 227, 227);
+    display: flex;
+    justify-content: space-around;
+    width: 900px;
+    border-radius: 20px;
+    gap: 50px;
+    /* margin: 10px; */
+}
+.driver img{
+    border: 5px solid purple;
+    border-radius: 20px;
+    width: 400px;
+}
+.elements{
+    display: flex;
+    flex-direction: column;
+    /* width: 100vw; */
+
+}
+.element{
+    display: flex;
+    /* background-color: red; */
+    width: 100%;
+    padding: 10px;
+}
+.btnContainer{
+    /* background-color: blue; */
+    margin: 20px;
+    display: flex;
+    gap: 10px;
+
+}
+.reject{
+    background-color: rgb(255, 3, 3);
+    padding: 5px 20px;
+    /* margin: 5px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;  
+    border: 1px solid white;
+    color: white;
+    font-size: 18px;
+}
+.reject:hover{
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transform: scale(1.03);
+    transition:  transform 0.3s ease-out;
+    background-color: rgb(226, 6, 6);
+}
+.approve{
+    background-color: rgb(1, 233, 1);
+    padding: 5px 20px;
+    /* margin: 5px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    gap: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+    border: 1px solid white;
+    color: white;
+    font-size: 18px;
+}
+.approve:hover{
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    transform: scale(1.03);
+    transition:  transform 0.3s ease-out;
+    background-color: rgb(5, 203, 5);
+    transform: background-color 0.3s ease-in-out;
+}

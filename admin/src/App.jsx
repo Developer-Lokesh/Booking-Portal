@@ -22,7 +22,7 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/pendingapprove" element={<Approvepending />} />
               <Route path="/approved" element={<Approved />} />
-              <Route path="/approve" element={<Approve />} />
+              <Route path="/approve/:id" element={<Approve />} />
               {/* <Route path='/vehiclecheck' element={<Vehicle/>}/> */}
               <Route path="/rejected" element={<Rejected />} />
               <Route path="/users" element={<User />} />

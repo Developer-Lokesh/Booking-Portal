@@ -26,14 +26,14 @@ const AuthProvider = ({children}) => {
                 const data = await res.json();
                 if(!data.success){
                     console.log(data.error);
-                    return;
+                    // return;
                 }
                 // console.log(data.data, "this is data")
                 setAdmin(data.data)
                 // console.log(data.data.name,"this is name")
             }
             catch (error) {
-                alert("Something went wrong");
+                // alert("Something went wrong");
                 console.log(error)
             }
         }

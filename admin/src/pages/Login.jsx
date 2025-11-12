@@ -30,7 +30,6 @@ const Login = () => {
             return;
         }
         try {
-            // setLoading(true);
 
             const url = import.meta.env.VITE_SERVER_URL;
             const res = await fetch(`${url}/auth/login`, {

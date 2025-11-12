@@ -65,7 +65,7 @@ const Approvepending = () => {
                       <td>{i.name}</td>
                       <td>{i.email}</td>
                       <td>{i.phone}</td>
-                      <td><Link to="/approve" className={style.profile}>Profile</Link></td>
+                      <td><Link to={`/approve/${i._id}`}className={style.profile}>Profile</Link></td>
                     </tr>
                   ))
                 }
