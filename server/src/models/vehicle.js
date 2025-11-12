@@ -9,6 +9,8 @@ const vehicleSchema = new mongoose.Schema({
     color:{type:String, required:true},
     model:{type:String, required:true},
     capacity:{type:Number, default:1},
+    vehicleImgURL:{type:String,required:true},
+    // public_id:{type:String, required:true}
     // permit:{type:mongoose.Schema.Types.ObjectId, ref:"Permit"}
 },
 {timestamps:true}

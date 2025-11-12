@@ -48,11 +48,11 @@ const approvedDrivers = async (req, res) => {
 
 const driverProfile = async (req, res) => {
     const {id} = req.params;
-    console.log(id)
+    // console.log(id)
 
     try {
         const profile = await driverProfileDB(id);
-        console.log(profile)
+        // console.log(profile)
         if(!profile){
             return res.json({
                 success:false,
@@ -106,6 +106,7 @@ const approveDriver = async (req, res) => {
 
 const rejectDriver = async (req, res) => {
     const { Id } = req.params;
+    // console.log(id)
     if (!Id) {
         return res.json({
             success: false,

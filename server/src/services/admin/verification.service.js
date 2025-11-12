@@ -1,5 +1,6 @@
 const Driver = require("../../models/driver");
 const Vehicle = require("../../models/vehicle");
+const Permit = require("../../models/permit")
 
 const getPendingDriversDB = async () => {
     return await Driver.find({verificationStatus:"pending"});
@@ -14,10 +15,24 @@ const rejectedDriversDB = async () => {
 }
 
 const driverProfileDB = async (id) => {
-    console.log(id, "in serveri")
-    const info = await Driver.findById(id).populate("Vehicle").populate("permit");
-    console.log(info)
-    return info;
+    const driverQuery = Driver.findById(id);
+    const driverData = await driverQuery.exec();
+
+    const vehicleQuery = Vehicle.findOne({driver: id});
+    const vehicleData = await vehicleQuery.exec();
+
+    const permitQuery = Permit.findOne({driver:id}).populate("vehicleInfo");
+    const permitData = await permitQuery.exec();
+
+    return {
+        driverData,
+        vehicleData,
+        permitData
+    }
+    // console.log(id, "in serveri")
+    // const info = await Driver.findById(id);
+    // console.log(info)
+    // return info;
 }
 
 const approveDriverDB = async (Id) => {
@@ -35,10 +50,17 @@ const approveDriverDB = async (Id) => {
 
 const rejectDriverDB = async (Id) => {
     const driver = await Driver.findById(Id);
-    if(!driver){
-        console.log("Erron in admin verification service");
-       throw new Error("Driver not found")
-    }
+    
+    // const driver = await Driver.findById(Id, {
+    //     verificationStatus: "rejected",
+    //     isVerified : false
+    // });
+
+    // if(!driver){
+    //     console.log("Erron in admin verification service");
+    //    throw new Error("Driver not found")
+    // }
+    
     driver.verificationStatus = "rejected";
     driver.isVerified = false;
     await driver.save();

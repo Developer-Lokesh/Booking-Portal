@@ -1,23 +1,23 @@
 const { vehicleRegistrationDB } = require("../../services/driver/vehicle.service");
 
 const vehicleRegistration = async (req, res) => {
-    const driver = req.user.id;
+    const driver = req.driver.id;
     console.log(driver.id)
-    const { numberPlate, vehicleName, RC,  color, model, capacity} = req.body;
-    if(!numberPlate|| !vehicleName || !RC || !color || !model || !capacity){
+    const { numberPlate, vehicleName, RC,  color, model, capacity, vehicleImgURL} = req.body;
+    if(!numberPlate|| !vehicleName || !RC || !color || !model || !capacity || !vehicleImgURL){
         return res.json({
             success:false,
             error:"All fields required",
-            require:["numberPlate", "vehicleType", "RC", "color", "model", "capacity"]
+            require:["numberPlate", "vehicleType", "RC", "color", "model", "capacity0", "vehicleImgURL"]
         });
     }
     try {
-        const vehicleData = await vehicleRegistrationDB({driver,numberPlate, vehicleName, RC, color, model, capacity});
+        const vehicleData = await vehicleRegistrationDB({driver,numberPlate, vehicleName, RC, color, model, capacity, vehicleImgURL});
         // console.log(vehicleData)
-        if(!vehicleData){
+        if(vehicleData && vehicleData.success === false){
             return res.json({
                 success:false,
-                error:"Something went wrong"
+                error:vehicleData.error
             });
         }
 

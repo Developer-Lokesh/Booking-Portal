@@ -1,109 +1,112 @@
-const { registerDB, loginDB } = require("../services/driver/auth.service");
+const { registerDB, loginDB } = require("../services/auth.service");
 const { generateToken, hashPassword, verifyPassword } = require("../utils");
 
 const register = async (req, res) => {
-    const {name, email, password, phone, licenseNumber} = req.body;
-    if(!name || !email || !password || !phone || !licenseNumber){
+    const { name, email, password, phone, licenseNumber, driverImgURL } = req.body;
+    // console.log(req.body)
+    // const driverImg = req.file;
+    if (!name || !email || !password || !phone || !licenseNumber || !driverImgURL) {
         return res.json({
-            success:false,
-            error:"All fields require",
-            require:["name", "email", "password", "phone","licenseNumber"],
+            success: false,
+            error: "All fields require",
+            require: ["name", "email", "password", "phone", "licenseNumber", "driverImgURL"],
         });
     }
     try {
         const hashpass = await hashPassword(password)
-        const driverAuth = await registerDB({name, email, password:hashpass, phone, licenseNumber,role:"driver"});
+        const driverAuth = await registerDB({ name, email, password: hashpass, phone, licenseNumber, role: "driver", driverImgURL });
         // console.log(driverAuth)
 
         driverAuth.password = undefined;
         driverAuth.__v = undefined;
 
-        if(!driverAuth){
+        if (!driverAuth) {
             return res.json({
-                success:false,
-                error:'SignUp failed',
+                success: false,
+                error: 'SignUp failed',
             });
         }
-    
+
         return res.json({
-            success:true,
-            message:"Successfully signUp",
+            success: true,
+            message: "Successfully signUp",
             data: driverAuth
         });
     } catch (error) {
         console.log(error);
-         if(error===11000){
+        if (error.code === 11000) {
             return res.json({
-                error:"Driver already exist"
+                success: false,
+                error: "Driver already exist"
             });
         }
         console.log("Error in driver controller" || "Something went wrong");
         return res.json({
-            success:false,
-            error:  "Something went wrong",
+            success: false,
+            error: "Something went wrong",
         })
     }
 };
 
 const login = async (req, res) => {
-    const {licenseNumber, email, password} = req.body;
-    // console.log(licenseNo, email, password);
-    if(!licenseNumber){
-        res.json({
-            success:false,
-            error:"Please enter the licenseNo"
+    const { licenseNumber, email, password } = req.body;
+    // console.log(licenceNumber, email, password);
+    if (!licenseNumber) {
+       return res.json({
+            success: false,
+            error: "Please enter the license number"
         })
     }
-    if(!email){
-        res.json({
-            success:false,
-            error:"Please enter the email"
+    if (!email) {
+       return res.json({
+            success: false,
+            error: "Please enter the email"
         })
     }
-    if(!password){
-        res.json({
-            success:false,
-            error:"Please enter the password"
+    if (!password) {
+       return res.json({
+            success: false,
+            error: "Please enter the password"
         })
     }
     try {
-        const driverLogin = await loginDB({licenseNumber, email, password});
+        const driverLogin = await loginDB({email, licenseNumber});
         // console.log(driverLogin,"controller")
-        if(!driverLogin){
+        if (!driverLogin) {
             return res.json({
-                success:false,
-                error:"Driver not exist with this email"
+                success: false,
+                error: "Driver not exist with this email"
             });
         }
 
-        const checkpass = await verifyPassword(password,driverLogin.password);
+        const checkpass = await verifyPassword(password, driverLogin.password);
 
-        if(!checkpass){
+        if (!checkpass) {
             return res.json({
-                success:false,
-                error:"incorrect password"
+                success: false,
+                error: "incorrect password"
             });
         }
-         
-        const {accesstoken, reftoken} = generateToken({
-            id:driverLogin._id,
-            name:driverLogin.name,
-            email:driverLogin.email,
-            phone:driverLogin.phone
+
+        const { accesstoken, reftoken } = generateToken({
+            id: driverLogin._id,
+            name: driverLogin.name,
+            email: driverLogin.email,
+            phone: driverLogin.phone
         });
 
         return res.json({
-            success:true,
-            message:"Successfully loggedIn",
-            data:{ driverLogin, accesstoken,reftoken}
+            success: true,
+            message: "Successfully loggedIn",
+            data: { driverLogin, accesstoken, reftoken }
         });
     } catch (error) {
-        console.log("Error in driver login controller",error);
+        console.log("Error in driver login controller", error);
         return res.json({
-            success:false,
-            error:"Login failed"
+            success: false,
+            error: "Login failed"
         });
     }
 };
 
-module.exports = {login, register}
+module.exports = { login, register }
