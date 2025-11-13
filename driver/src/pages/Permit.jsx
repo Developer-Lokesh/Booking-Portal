@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Image from '../components/Image';
+import { Loader } from 'lucide-react';
 
 const Permit = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   const [permitImg, setPermitImg] = useState(null)
   const [form, setForm] = useState({
     // permitImgURL:"",
@@ -36,6 +38,7 @@ const Permit = () => {
     // cloudinary image upload logic
 
     try {
+      setLoading(true)
       const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
       const preset = import.meta.env.VITE_CLOUDINARY_PRESET_NAME;
 
@@ -99,6 +102,9 @@ const Permit = () => {
     } catch (error) {
       console.log(error);
     }
+    finally{
+      setLoading(false)
+    }
   }
   
   return (
@@ -123,7 +129,7 @@ const Permit = () => {
           <input onChange={inputHandler} type="text" placeholder='Enter RC' name='RC' value={form.RC} className='border rounded w-full placeholder:text-center'/>
         </div>
         <div className='mt-2'>
-          <button type='submit' className='bg-blue-500 p-2 mt-2 rounded-sm cursor-pointer w-full hover:bg-blue-700'>Add Permit</button>
+          <button type='submit' className='bg-blue-500 p-2 mt-2 rounded-sm cursor-pointer w-full hover:bg-blue-700'>{loading ? <div className='w-full h-full flex justify-center'><Loader className='w-4 h-4 text-white animate-spin'/></div> : "Add Permit"}</button>
         </div>
       </form>
     </div>

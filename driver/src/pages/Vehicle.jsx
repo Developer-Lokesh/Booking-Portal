@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Image from '../components/Image';
+import { FastForward, Loader } from 'lucide-react';
 
 const Vehicle = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   const [vehicleImg, setVehicleImg] = useState(null);
   const [form, setForm] = useState({
     numberPlate:"",
@@ -32,6 +34,7 @@ const Vehicle = () => {
     // cloudinary image upload logic
 
     try {
+      setLoading(true)
       const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
       const preset = import.meta.env.VITE_CLOUDINARY_PRESET_NAME;
       const formData = new FormData();
@@ -100,6 +103,8 @@ const Vehicle = () => {
 
     } catch (error) {
       console.log(error);
+    } finally{
+      setLoading(false)
     }
   }
 
@@ -137,7 +142,7 @@ const Vehicle = () => {
           {/* <input onChange={inputHandler} type="number" placeholder='Enter seats capacity' name='capacity' value={form.capacity} className='border rounded w-full placeholder:text-center'/> */}
         </div>
         <div className='mt-2'>
-          <button type='submit' className='bg-blue-500 p-2 mt-2 rounded-sm cursor-pointer w-full hover:bg-blue-700'>Register Vehicle</button>
+          <button type='submit' className='bg-blue-500 p-2 mt-2 rounded-sm cursor-pointer w-full hover:bg-blue-700'>{loading ? <div className='w-full h-full flex justify-center'><Loader className='w-4 h-4 text-white animate-spin'/></div> : "Register Vehicle"}</button>
           {/* <p className='p-2'>Already have an account? <Link className='text-blue-600 p-2' to={"/login"}>Login</Link></p> */}
         </div>
       </form>

@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import Image from '../components/Image';
+import { Loader } from 'lucide-react'
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false)
   const [driverImg, setDriverImg] = useState(null);
   const [formData, setFormData] = useState({
     name:"",
@@ -43,6 +45,7 @@ const Signup = () => {
     // cloudinary image upload logic
 
     try {
+      setLoading(true)
       const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
       const preset = import.meta.env.VITE_CLOUDINARY_PRESET_NAME;
       const formData = new FormData();
@@ -154,6 +157,9 @@ const Signup = () => {
     } catch (error) {
       console.log(error);
     }
+    finally{
+      setLoading(false)
+    }
   }
 
   return (
@@ -193,7 +199,8 @@ const Signup = () => {
 
 
         <div>
-          <button type='submit' className='bg-blue-500 p-2 mt-2 rounded-sm cursor-pointer w-full hover:bg-blue-700'>Create Account</button>
+          <button type='submit' className='bg-blue-500 p-2 mt-2 rounded-sm cursor-pointer w-full hover:bg-blue-700'>{loading ? <div className='w-full h-full text-white flex justify-center
+          '><Loader className='w-4 h-4 animate-spin'/> </div> : "create Account" }</button>
           <p className='p-2'>Already have an account? <Link className='text-blue-600 p-2' to={"/login"}>Login</Link></p>
         </div>
       </form>
