@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import style from "../styles/login.module.css"
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+    const navigate = useNavigate()
     // const [loading, setLoading] = useState(false)
     const [formData, setFormData] = useState({
         email:"",
@@ -8,10 +10,11 @@ const Login = () => {
     });
 
      useEffect(()=>{
-            if(localStorage.getItem("token")){
-                window.location.href = "/login"
+            if(!localStorage.getItem("token")){
+                // window.location.href = "/login"
+                navigate("/login")
             }
-        },[]);
+        },[navigate]);
 
     const inputHandler = (e) => {
         const eleName = e.target.name;

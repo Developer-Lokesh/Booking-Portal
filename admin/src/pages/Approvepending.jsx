@@ -45,7 +45,7 @@ const Approvepending = () => {
         <div className={styles.loading}>
           <div className={styles.loader}><Loader size={50}/></div><br />
         </div>
-      ) : drivers.length > 0 ? (
+      ) :drivers && drivers.length > 0 ? (
         <div className={style.body}>
           <h1 className={style.heading}>Pending drivers</h1>
           <div className={style.container}>
