@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { DriverProvider } from '../context/DriverContext'
 import style from "../styles/usergraph.module.css"
 import { Link } from 'react-router-dom';
+import withAuth from './withAuth';
 
 
 const Rejected = () => {
@@ -36,4 +37,4 @@ const Rejected = () => {
     )
 }
 
-export default Rejected;
+export default withAuth(Rejected);

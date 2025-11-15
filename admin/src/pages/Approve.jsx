@@ -9,6 +9,7 @@ import { format } from "date-fns"
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { Check, Loader, MoveRight, X } from 'lucide-react'
+import withAuth from '../components/withAuth'
 
 const Approve = () => {
   // const {pending} = useContext(DriverProvider);
@@ -262,4 +263,4 @@ const Approve = () => {
   )
 }
 
-export default Approve;
+export default withAuth(Approve);

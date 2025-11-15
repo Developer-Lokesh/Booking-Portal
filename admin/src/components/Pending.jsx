@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import { DriverProvider } from '../context/DriverContext'
 import style from "../styles/usergraph.module.css"
 import { Link } from 'react-router-dom';
+import withAuth from './withAuth';
 
 
 const Pending = () => {
@@ -36,4 +37,4 @@ const Pending = () => {
     )
 }
 
-export default Pending;
+export default withAuth(Pending);

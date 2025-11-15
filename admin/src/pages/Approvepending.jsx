@@ -5,6 +5,7 @@ import styles from "../styles/loading.module.css"
 import { Link } from "react-router-dom"
 import Layout from '../components/Layout'
 import { Loader } from 'lucide-react'
+import withAuth from '../components/withAuth'
 // import DriverContext from '../context/DriverContext'
 
 const Approvepending = () => {
@@ -80,4 +81,4 @@ const Approvepending = () => {
   )
 }
 
-export default Approvepending;
+export default withAuth(Approvepending);

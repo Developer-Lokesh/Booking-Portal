@@ -9,12 +9,12 @@ const Login = () => {
         password:""
     });
 
-     useEffect(()=>{
-            if(!localStorage.getItem("token")){
-                // window.location.href = "/login"
-                navigate("/login")
-            }
-        },[navigate]);
+    //  useEffect(()=>{
+    //         if(!localStorage.getItem("token")){
+    //             // window.location.href = "/login"
+    //             navigate("/login")
+    //         }
+    //     },[navigate]);
 
     const inputHandler = (e) => {
         const eleName = e.target.name;

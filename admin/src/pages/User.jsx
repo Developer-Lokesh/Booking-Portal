@@ -4,6 +4,7 @@ import style from "../styles/user.module.css"
 import styles from "../styles/loading.module.css"
 import { UserProvider } from '../context/UserContext'
 import { Loader } from 'lucide-react';
+import withAuth from '../components/withAuth'
 
 const User = () => {
     const {user, loading} = useContext(UserProvider);
@@ -48,4 +49,4 @@ const User = () => {
   )
 }
 
-export default User;
+export default withAuth(User);

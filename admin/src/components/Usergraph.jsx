@@ -3,6 +3,7 @@ import style from "../styles/usergraph.module.css"
 import { useContext } from 'react';
 import {UserProvider} from '../context/UserContext';
 import { Link } from 'react-router-dom';
+import withAuth from './withAuth';
 
 const Usergraph = () => {
     const {user} = useContext(UserProvider);
@@ -36,4 +37,4 @@ const Usergraph = () => {
     )
 }
 
-export default Usergraph;
+export default withAuth(Usergraph);

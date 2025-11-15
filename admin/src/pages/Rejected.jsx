@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Loader } from 'lucide-react'
+import withAuth from '../components/withAuth'
 
 const Rejected = () => {
   const [loading, setLoading] = useState(false);
@@ -77,38 +78,4 @@ const Rejected = () => {
   )
 }
 
-export default Rejected;
-
-
-
-
-{/* <Layout className={style.sidebarBody}>
-      {reject.length > 0 ? (
-        <div className={style.body}>
-          <h1 className={style.heading}>Rejected drivers</h1>
-          <table className={style.table}>
-            <thead className={style.thead}>
-              <tr>
-                <th className={style.th}>Name</th>
-                <th className={style.th}>Email</th>
-                <th className={style.th}>Phone</th>
-                <th className={style.th}>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                reject.map((i, index) => (
-                  <tr key={index}>
-                    <td>{i.name}</td>
-                    <td>{i.email}</td>
-                    <td>{i.phone}</td>
-                    <td className={style.verification}>{i.verificationStatus} </td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>) :
-        <h1 className={style.heading1}>No rejected driver found</h1>
-      }
-    </Layout> */}
+export default withAuth(Rejected);

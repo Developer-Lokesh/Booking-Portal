@@ -6,6 +6,7 @@ import Usergraph from '../components/Usergraph';
 import Pending from "../components/Pending";
 import Approved from "../components/Approved";
 import Rejected from "../components/Rejected";
+import withAuth from "../components/withAuth";
 // import UserContext from "../context/UserContext";
 // import { useContext } from "react";
 
@@ -29,4 +30,4 @@ const Home = () => {
   )
 }
 
-export default Home;
+export default withAuth(Home);

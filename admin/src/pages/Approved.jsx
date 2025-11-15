@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { Loader } from 'lucide-react'
+import withAuth from '../components/withAuth'
 
 const Approved = () => {
   const [approve, setApprove] = useState([]);
@@ -77,4 +78,4 @@ const Approved = () => {
   )
 }
 
-export default Approved;
+export default withAuth(Approved);

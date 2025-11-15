@@ -7,13 +7,19 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
     const [admin, setAdmin] = useState(null);
+    const [loading, setLoading] = useState(true)
+    // console.log(admin,"hi admin")
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const url = import.meta.env.VITE_SERVER_URL;
-                // console.log(url)
                 const token = localStorage.getItem("token");
+                // if(!token){
+                //     setAdmin(null)
+                //     setLoading(false)
+                //     return;
+                // }
 
                 const res = await fetch(`${url}/admin/me`, {
                     method: "GET",
@@ -26,15 +32,18 @@ const AuthProvider = ({children}) => {
                 const data = await res.json();
                 if(!data.success){
                     console.log(data.error);
+                    // localStorage.removeItem("token")
+                    // localStorage.removeItem("reftoken")
                     // return;
                 }
-                // console.log(data.data, "this is data")
                 setAdmin(data.data)
-                // console.log(data.data.name,"this is name")
+                // console.log(data.data, "this");
             }
             catch (error) {
-                // alert("Something went wrong");
                 console.log(error)
+            } 
+            finally {
+                setLoading(false)
             }
         }
             fetchData();
@@ -42,7 +51,7 @@ const AuthProvider = ({children}) => {
     },[]);
 
     return (
-        <AuthContext.Provider value={{admin, setAdmin}}>
+        <AuthContext.Provider value={{admin, setAdmin, loading}}>
             {children}
         </AuthContext.Provider>
     )

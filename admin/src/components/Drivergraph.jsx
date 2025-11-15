@@ -2,6 +2,7 @@ import React, { useContext} from 'react'
 import {Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip} from "recharts"
 import style from "../styles/Drivergraph.module.css"
 import { DriverProvider } from '../context/DriverContext';
+import withAuth from './withAuth';
 
 const Drivergraph = () => {
 
@@ -27,4 +28,4 @@ const Drivergraph = () => {
   )
 }
 
-export default Drivergraph;
+export default withAuth(Drivergraph);
