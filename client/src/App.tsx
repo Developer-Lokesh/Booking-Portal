@@ -1,9 +1,18 @@
+import { BrowserRouter} from "react-router-dom"
+
+import Layout from "./components/Layout"
+
 function App() {
 
   return (
-    <div className='text-red-600'>hello</div>
-    
+    <BrowserRouter>
+        <Layout/>
+    </BrowserRouter>
+
   )
 }
 
 export default App
+
+
+

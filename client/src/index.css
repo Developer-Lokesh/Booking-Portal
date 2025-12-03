@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@utility line-shadow {
+    box-shadow : rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+@utility soft-shadow {
+    box-shadow :  rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+@utility hard-shadow {
+    box-shadow :  rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+@utility glow {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+@utility blue-glow {
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
