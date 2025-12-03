@@ -15,11 +15,6 @@ const AuthProvider = ({children}) => {
             try {
                 const url = import.meta.env.VITE_SERVER_URL;
                 const token = localStorage.getItem("token");
-                // if(!token){
-                //     setAdmin(null)
-                //     setLoading(false)
-                //     return;
-                // }
 
                 const res = await fetch(`${url}/admin/me`, {
                     method: "GET",
@@ -30,6 +25,7 @@ const AuthProvider = ({children}) => {
                 });
 
                 const data = await res.json();
+                console.log(data, "this is me");
                 if(!data.success){
                     console.log(data.error);
                     // localStorage.removeItem("token")

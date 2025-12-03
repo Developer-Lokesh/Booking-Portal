@@ -7,23 +7,22 @@ import { AuthContext } from '../context/AuthProvider'
 const withAuth = (WrappedComponent)  => (props) => {
     const navigate = useNavigate();
     const {admin, loading} = useContext(AuthContext);
-    console.log(admin , "this is admin")
 
     useEffect(() => {
         if(!admin && !loading){
             navigate("/login");
         }
-    }, [loading]);
+    }, [admin, loading]); 
 
-   if (loading) return <Loading />;
-
-  return admin ? <WrappedComponent {...props}/> : null;
+  return admin ? <WrappedComponent {...props}/> : <Loading/>;
 }
 
 const Loading = () => {
-    <div className={style.loader}>
+    return (
+        <div className={style.loader}>
         <div><Loader/></div>
     </div>
+    )
 }
 
 export default withAuth;

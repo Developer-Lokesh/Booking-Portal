@@ -8,3 +8,18 @@
     display: flex;
     width: 100%;
 }
+.sidebar{
+    display: none;
+}
+
+.Mobile{
+    display: none;
+}
+@media (max-width: 768px){
+    .sidebar{
+        display: block;
+    }
+    .Desktop{
+        display: none;
+    }
+}

@@ -11,25 +11,28 @@ import AuthProvider from './context/AuthProvider';
 import UserContext from './context/UserContext';
 import DriverContext from './context/DriverContext';
 import User from './pages/User';
+import Appstore from './store/Appstore';
 
 const App = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <UserContext>
-          <DriverContext>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/pendingapprove" element={<Approvepending />} />
-              <Route path="/approved" element={<Approved />} />
-              <Route path="/approve/:id" element={<Approve />} />
-              {/* <Route path='/vehiclecheck' element={<Vehicle/>}/> */}
-              <Route path="/rejected" element={<Rejected />} />
-              <Route path="/users" element={<User />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </DriverContext>
-        </UserContext>
+        <Appstore>
+          <UserContext>
+            <DriverContext>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/pendingapprove" element={<Approvepending />} />
+                <Route path="/approved" element={<Approved />} />
+                <Route path="/approve/:id" element={<Approve />} />
+                {/* <Route path='/vehiclecheck' element={<Vehicle/>}/> */}
+                <Route path="/rejected" element={<Rejected />} />
+                <Route path="/users" element={<User />} />
+                <Route path="/login" element={<Login />} />
+              </Routes>
+            </DriverContext>
+          </UserContext>
+        </Appstore>
       </AuthProvider>
     </BrowserRouter>
   )
