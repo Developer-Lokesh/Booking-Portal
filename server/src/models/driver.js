@@ -7,13 +7,28 @@ const driverSchema = new mongoose.Schema({
     phone: { type: Number, required: true, unique: true },
     licenseNumber: { type: String, required: true, unique: true },
     driverImgURL:{type:String, required:true},
+
     // driverImg:{type:String, required:true},
     // public_id:{type:String, required:true},
+    
     role:{type:String, enum:["driver"]},
     isAvailable: { type: Boolean, default: true },
     verificationStatus: { type: String, enum: ["pending", "approved", "rejected"], default: "pending" },
     isVerified: { type: Boolean, default: false },
     status: { type: String, enum: ["online", "busy", "offline"], default: "offline" },
+
+    location: {
+        type:{
+            type:String,
+            enum:["Point"],
+            default:"Point"
+        },
+        coordinates:{
+            type:[Number],
+            default: [0,0],
+            // required:true
+        }
+    }
    
     // rating:{type:Number, default:0},
     // totalRide:{type:Number, default:0},
@@ -21,6 +36,8 @@ const driverSchema = new mongoose.Schema({
 },
     { timestamps: true },
 );
+
+driverSchema.index({location: "2dsphere"})
 
 const Driver = mongoose.model("Driver", driverSchema);
 

@@ -20,14 +20,9 @@ const Signup = () => {
   }
 
   const inputHandler = (e) => {
-    // console.log(e.target.value)
     const eleName = e.target.name;
     const value = e.target.value;
-    // if(eleName === "driverImg"){
-      // setFormData({...form, [eleName]: e.target.files[0]});
-    // }else{
       setFormData({... formData, [eleName]: value});
-    // }
   }
 
   
@@ -81,20 +76,6 @@ const Signup = () => {
         ...formData,
         driverImgURL
       }
-      // const form = new FormData ();
-      // form.append("name", formData.name)
-      // form.append("email", formData.email)
-      // form.append("password", formData.password)
-      // form.append("phone", formData.phone)
-      // form.append("licenseNumber", formData.licenseNumber)
-      // form.append("driverImg",  driverImg)
-      // if (formData.driverImg) {
-      //   form.append("driverImg", formData.driverImg)
-      // } else {
-      //   alert("please upload image");
-      //   return;
-      // }
-      // form.append("driverImg", formData.driverImg);
       
       const url = import.meta.env.VITE_SERVER_URL;
       const res = await fetch(`${url}/driverAuth/register`, {
@@ -103,14 +84,11 @@ const Signup = () => {
           "Content-Type":"application/json"
         },
         body: JSON.stringify(registerBody),
-        // body: form,
       });
       
       const data = await res.json();
 
       console.log(data)
-      // console.log("id", data.data._id);
-      // var driverId = data.data._id;
 
       if(!data.success){
         alert("Registration failed");
@@ -135,15 +113,8 @@ const Signup = () => {
 
       const data1 = await res1.json();
 
-      // console.log(data1);
-
-      // console.log(data1.data.accesstoken);
-      // console.log(data1.data.reftoken);
-
       const token = data1.data.accesstoken;
       const reftoken = data1.data.reftoken;
-
-      // const driverId = data1.data._id;
 
       if(data1.success){
         localStorage.setItem("token", token);
@@ -189,14 +160,7 @@ const Signup = () => {
         <div>
           <h2 className='mt-2'> Upload Image </h2>
           <Image selectedImg={imageHandler} />
-          {/* <input onChange={inputHandler} type="file" placeholder='please upload image' name='driverImg' value={formData.driverImg} className='border rounded  placeholder:text-center w-full'/> */}
         </div>
-
-        {/* <div>
-          <h2 className='mt-2'> Upload Image </h2>
-          <input onChange={inputHandler} type="file" placeholder='please upload image' name='driverImg' value={formData.driverImg} className='border rounded  placeholder:text-center w-full'/>
-        </div> */}
-
 
         <div>
           <button type='submit' className='bg-blue-500 p-2 mt-2 rounded-sm cursor-pointer w-full hover:bg-blue-700'>{loading ? <div className='w-full h-full text-white flex justify-center

@@ -1,8 +1,8 @@
 const Driver = require("../models/driver");
 
 const loginDB = async ({email, licenseNumber}) => {
-    const store =  await Driver.findOne({email, licenseNumber});
-    return store;
+    return  await Driver.findOne({email, licenseNumber}).select("-__v");
+    
 };
 
 const registerDB = async ({name, email, password, phone, licenseNumber,role, driverImgURL}) => {

@@ -15,7 +15,7 @@ const registerDB = async ({email, name, password,phone,role}) => {
 }
 
 const loginDB = async ({email}) => {
-    return await User.findOne({email});
+    return await User.findOne({email}).select("-__v");
 }
 
 module.exports = {loginDB, registerDB}

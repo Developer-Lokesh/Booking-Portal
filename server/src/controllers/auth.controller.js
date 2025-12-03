@@ -8,12 +8,12 @@ const register = async (req, res) => {
         return res.json({
             success: false,
             error: "All field require",
-            require:"['name', 'email', 'password', 'phone']"
+            require: "['name', 'email', 'password', 'phone']"
         });
     }
     try {
         const hashpass = await hashPassword(password)
-        const user = await registerDB({ name, email, password:hashpass, phone, role:"user" });
+        const user = await registerDB({ name, email, password: hashpass, phone, role: "user" });
 
         user.password = undefined;
         user.__v = undefined;
@@ -31,9 +31,9 @@ const register = async (req, res) => {
         })
     } catch (error) {
         console.log(error)
-        if(error.code===11000){
+        if (error.code === 11000) {
             return res.json({
-                error:"User already exist"
+                error: "User already exist"
             });
         }
         console.log("Error in register controller" || "Something went wrong");
@@ -46,6 +46,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
     const { email, password } = req.body;
+
     if (!email) {
         return res.json({
             success: false,
@@ -59,38 +60,38 @@ const login = async (req, res) => {
         });
     }
     try {
-        const user = await loginDB({email, password});
+        const user = await loginDB({ email, password });
 
-        if(!user){
+        if (!user) {
             return res.json({
-                success:false,
-                error:"User not found",
+                success: false,
+                error: "User not found",
             });
         }
 
         // check password
 
-        const isValid = await verifyPassword(password,user.password);
-        if(!isValid){
+        const isValid = await verifyPassword(password, user.password);
+        if (!isValid) {
             return res.json({
-                success:false,
-                error:"incorrect password"
+                success: false,
+                error: "incorrect password"
             });
         }
 
-        const {accesstoken, reftoken} = generateToken({
-            id:user._id,
-            name:user.name,
-            email:user.email,
-            role:user.role
+        const { accesstoken, reftoken } = generateToken({
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role
         });
 
         return res.json({
-            success:true,
-            message:"User loggedIn successfully",
-            data: {user, accesstoken, reftoken},
+            success: true,
+            message: "User loggedIn successfully",
+            data: { user, accesstoken, reftoken },
         });
-        
+
     } catch (error) {
         console.log(error);
         console.log("Erron in login controller" || "Something went wrong");
@@ -101,4 +102,4 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = {register, login}
+module.exports = { register, login }
